@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kasir Toko zAy - Unduh untuk Windows</title>
+<meta name="description" content="Aplikasi kasir desktop untuk Windows. Unduh, ekstrak, lalu jalankan. Tidak perlu memasang Java.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=IBM+Plex+Mono:wght@400;600&family=Instrument+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0F172A;
+    --ink: #1E293B;
+    --mist: #F1F5F9;
+    --garis: #CBD5E1;
+    --muted: #475569;
+    --teal: #0F766E;
+    --teal-gelap: #115E59;
+    --teal-terang: #2DD4BF;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font: 17px/1.65 "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    color: var(--ink);
+    background: var(--mist);
+  }
+  a { color: var(--teal); }
+  :focus-visible { outline: 3px solid var(--teal-terang); outline-offset: 3px; }
+
+  h1, h2 {
+    font-family: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+  h1 { font-weight: 800; font-size: clamp(2.3rem, 5vw, 3.9rem); line-height: 1.04; }
+  h2 { font-weight: 600; font-size: clamp(1.5rem, 2.6vw, 2rem); line-height: 1.15; margin-bottom: 20px; }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    min-height: 620px;
+  }
+  .hero-teks {
+    padding: clamp(28px, 6vw, 84px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 22px;
+  }
+  .merek { font-weight: 600; color: var(--teal); }
+  .hero-teks p { margin: 0; max-width: 46ch; font-size: 1.1rem; color: var(--muted); }
+  .aksi { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 20px; margin-top: 6px; }
+  .tombol {
+    display: inline-block;
+    background: var(--teal);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 16px 28px;
+    border-radius: 12px;
+  }
+  .tombol:hover { background: var(--teal-gelap); }
+  .syarat { font-size: 0.95rem; color: var(--muted); }
+  #pesan {
+    display: none;
+    margin: 0;
+    padding: 12px 16px;
+    border-left: 4px solid #B45309;
+    background: #FEF3C7;
+    color: #78350F;
+    font-size: 0.95rem;
+    max-width: 52ch;
+  }
+
+  .hero-struk {
+    background: var(--navy);
+    display: grid;
+    place-items: center;
+    padding: 56px 24px;
+  }
+  .struk {
+    margin: 0;
+    background: #fff;
+    color: var(--ink);
+    font: 400 clamp(10px, 1.35vw, 13px)/1.5 "IBM Plex Mono", "Courier New", monospace;
+    white-space: pre;
+    padding: 26px 20px 38px;
+    max-width: 100%;
+    overflow-x: auto;
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 9px), 100.000% calc(100% - 9px), 95.455% 100%, 90.909% calc(100% - 9px), 86.364% 100%, 81.818% calc(100% - 9px), 77.273% 100%, 72.727% calc(100% - 9px), 68.182% 100%, 63.636% calc(100% - 9px), 59.091% 100%, 54.545% calc(100% - 9px), 50.000% 100%, 45.455% calc(100% - 9px), 40.909% 100%, 36.364% calc(100% - 9px), 31.818% 100%, 27.273% calc(100% - 9px), 22.727% 100%, 18.182% calc(100% - 9px), 13.636% 100%, 9.091% calc(100% - 9px), 4.545% 100%, 0.000% calc(100% - 9px));
+    transform: rotate(1.2deg);
+    box-shadow: none;
+  }
+
+  /* ---------- Isi halaman ---------- */
+  main { max-width: 980px; margin: 0 auto; padding: 72px 24px 24px; }
+  section { margin-bottom: 72px; }
+
+  .fitur { margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 0 48px; }
+  .fitur div { padding: 16px 0; border-top: 1px solid var(--garis); }
+  .fitur dt { font-weight: 600; }
+  .fitur dd { margin: 2px 0 0; color: var(--muted); }
+
+  .langkah { margin: 0; padding: 0; list-style: none; counter-reset: langkah; max-width: 66ch; }
+  .langkah li {
+    counter-increment: langkah;
+    position: relative;
+    padding: 0 0 22px 52px;
+  }
+  .langkah li::before {
+    content: counter(langkah);
+    position: absolute; left: 0; top: 0;
+    width: 36px; height: 36px; border-radius: 50%;
+    background: var(--navy); color: #fff;
+    display: grid; place-items: center;
+    font-weight: 600;
+  }
+  .langkah strong { display: block; }
+  .langkah span { color: var(--muted); }
+
+  .coba { display: grid; grid-template-columns: 1fr 1fr; gap: 32px 48px; }
+  table { border-collapse: collapse; width: 100%; font-size: 0.97rem; }
+  th, td { text-align: left; padding: 9px 12px 9px 0; border-bottom: 1px solid var(--garis); }
+  th { font-weight: 600; }
+  td.kode { font-family: "IBM Plex Mono", "Courier New", monospace; }
+  .coba p { margin: 0 0 12px; color: var(--muted); }
+
+  footer {
+    border-top: 1px solid var(--garis);
+    max-width: 980px; margin: 0 auto;
+    padding: 24px 24px 56px;
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+
+  @media (max-width: 860px) {
+    .hero { grid-template-columns: 1fr; min-height: 0; }
+    .hero-struk { padding: 44px 16px 56px; }
+    .struk { font-size: 11px; transform: none; }
+    .fitur, .coba { grid-template-columns: 1fr; }
+    main { padding-top: 48px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-teks">
+    <div class="merek">Toko zAy</div>
+    <h1>Aplikasi kasir untuk toko kecil. Unduh, ekstrak, jalankan.</h1>
+    <p>Catat belanja pelanggan dengan menekan Enter, hitung kembalian otomatis, lalu cetak atau simpan struknya. Berjalan di Windows tanpa memasang Java.</p>
+    <div class="aksi">
+      <!-- GANTI link di bawah dengan link download file KasirTokoZay.zip (Google Drive / GitHub Releases) -->
+      <a id="unduh" class="tombol" href=https://github.com/zay2908/ApkkasirzAy/releases/download/v1.0%2C/KasirTokoZay.zip>Unduh untuk Windows (.zip)</a>
+      <span class="syarat">Windows 10 atau 11, 64-bit</span>
+    </div>
+    <p id="pesan" role="status">Link download belum diisi. Buka file ini dengan Notepad, cari <b>https://github.com/zay2908/ApkkasirzAy/releases/download/v1.0%2C/KasirTokoZay.zip</b>, lalu ganti dengan link file KasirTokoZay.zip.</p>
+  </div>
+  <div class="hero-struk" aria-label="Contoh struk yang dihasilkan aplikasi">
+    <pre class="struk">==========================================
+                 Toko zAy
+       Jl. Pramuka Kec. Teluk Dalam
+            Kab. Nias Selatan
+==========================================
+No. Transaksi : TRX-20261031-001
+Tanggal       : 31/10/2026 14:05:12
+Kasir         : Kasir 1
+------------------------------------------
+Indomie Goreng
+  4 x Rp3.000                     Rp12.000
+Telur Ayam 1kg
+  1 x Rp28.000                    Rp28.000
+Good Day Cappucino
+  3 x Rp2.000                      Rp6.000
+------------------------------------------
+Jumlah Barang                            8
+TOTAL BAYAR                       Rp46.000
+Metode Bayar                         Tunai
+Tunai                             Rp50.000
+Kembalian                          Rp4.000
+==========================================
+      TERIMA KASIH TELAH BERBELANJA
+   Barang yang sudah dibeli tidak dapat
+          ditukar/dikembalikan.
+==========================================</pre>
+  </div>
+</header>
+
+<main>
+  <section aria-labelledby="fitur">
+    <h2 id="fitur">Yang bisa dilakukan aplikasi ini</h2>
+    <dl class="fitur">
+      <div><dt>Login kasir</dt><dd>Setiap kasir masuk dengan username dan password sendiri. Nama kasir tercatat di struk.</dd></div>
+      <div><dt>Input barang cukup dengan Enter</dt><dd>Ketik kode, Enter, isi jumlah, Enter. Barang yang sama otomatis digabung.</dd></div>
+      <div><dt>Pembayaran tunai</dt><dd>Kembalian muncul saat uang diketik. Tombol uang pas, 50.000, dan 100.000 tersedia.</dd></div>
+      <div><dt>Stok berkurang otomatis</dt><dd>Stok dicek sebelum barang masuk dan dikurangi setelah transaksi berhasil.</dd></div>
+      <div><dt>Struk bisa dicetak atau disimpan</dt><dd>Setelah pesan transaksi berhasil, struk tampil dan bisa dicetak atau disimpan sebagai file teks.</dd></div>
+      <div><dt>Riwayat dan pendapatan</dt><dd>Semua transaksi tercatat lengkap dengan total pendapatannya.</dd></div>
+    </dl>
+  </section>
+
+  <section aria-labelledby="pasang">
+    <h2 id="pasang">Cara memasang</h2>
+    <ol class="langkah">
+      <li><strong>Unduh file KasirTokoZay.zip</strong><span>Klik tombol Unduh di bagian atas halaman.</span></li>
+      <li><strong>Ekstrak filenya</strong><span>Klik kanan file zip, pilih Extract All. Jangan jalankan langsung dari dalam zip.</span></li>
+      <li><strong>Buka folder hasil ekstrak</strong><span>Klik dua kali KasirTokoZay.exe.</span></li>
+      <li><strong>Jika muncul peringatan biru “Windows protected your PC”</strong><span>Klik More info, lalu Run anyway. Peringatan ini muncul karena aplikasi belum memiliki tanda tangan digital.</span></li>
+    </ol>
+  </section>
+
+  <section aria-labelledby="coba">
+    <h2 id="coba">Mencoba aplikasi</h2>
+    <div class="coba">
+      <div>
+        <p>Masuk dengan salah satu akun ini.</p>
+        <table>
+          <thead><tr><th>Username</th><th>Password</th></tr></thead>
+          <tbody>
+            <tr><td class="kode">kasir1</td><td class="kode">1234</td></tr>
+            <tr><td class="kode">admin</td><td class="kode">admin123</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <p>Ketik salah satu kode barang ini.</p>
+        <table>
+          <thead><tr><th>Kode</th><th>Barang</th><th>Harga</th></tr></thead>
+          <tbody>
+            <tr><td class="kode">101</td><td>Facial Wash</td><td>Rp40.000</td></tr>
+            <tr><td class="kode">102</td><td>Sabun</td><td>Rp5.000</td></tr>
+            <tr><td class="kode">103</td><td>Gula Pasir 1kg</td><td>Rp15.500</td></tr>
+            <tr><td class="kode">104</td><td>Telur Ayam 1kg</td><td>Rp28.000</td></tr>
+            <tr><td class="kode">105</td><td>Indomie Goreng</td><td>Rp3.000</td></tr>
+            <tr><td class="kode">106</td><td>Good Day Cappucino</td><td>Rp2.000</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  Dibuat oleh zAy  untuk tugas mata kuliah Pemrograman Berbasis Objek.
+</footer>
+
+<script>
+  // Jika link download belum diganti, tampilkan petunjuk alih-alih membuka halaman kosong.
+  var tombol = document.getElementById("unduh");
+  var pesan = document.getElementById("pesan");
+  tombol.addEventListener("click", function (e) {
+    if (tombol.getAttribute("href").indexOf("GANTI") === 0) {
+      e.preventDefault();
+      pesan.style.display = "block";
+    }
+  });
+</script>
+</body>
+</html>
